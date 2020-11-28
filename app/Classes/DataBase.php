@@ -4,9 +4,9 @@ namespace App\Classes;
 use App\Exception\CustomException;
 
 /**
-* Класс DataBase (тип шаблона Singleton), который устанавливает соединение с базой данных
-* и осуществляет реализацию на единственность создания его экземпляра.
-*/
+ * Class DataBase set connection with data base
+ * @package App\Classes
+ */
 class DataBase 
 { 
     private $db;

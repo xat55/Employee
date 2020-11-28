@@ -1,6 +1,10 @@
 <?php
 namespace App\Exception;
 
+/**
+ * Class CustomException
+ * @package App\Exception
+ */
 class CustomException extends \Exception 
 {
   const MESSAGE = 'База данных вернула пустой ответ!!!';
