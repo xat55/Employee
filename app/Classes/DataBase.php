@@ -14,7 +14,6 @@ class DataBase
     
     static public function getInstance() 
     {
-        
         if(self::$_ins instanceof self) {
             return self::$_ins;
         }
@@ -53,14 +52,6 @@ class DataBase
     public function getData($query) 
     {
         $result = $this->db->query($query);
-        
-        // Обрабатываем полученные данные из БД:
-        // Способ № 1
-        // for($row = [], $i = 0; $i < $result->num_rows; $i++) {
-        //   $row[] = $result->fetch_assoc();
-        // }
-        
-        // Способ № 2
         for ($row = []; $data = mysqli_fetch_assoc($result); $row[] = $data);
         
         if (empty($row)) {

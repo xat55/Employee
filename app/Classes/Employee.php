@@ -17,8 +17,8 @@ final class Employee
     public function __construct()
     {
         $this->db = DataBase::getInstance();
-        // $this->create();
-        // $this->fill();
+        $this->create();
+        $this->fill();
     }
     
     /**
@@ -97,7 +97,7 @@ final class Employee
     *
     * @throws CustomException
     */
-    public function fill()
+    private function fill()
     {    
         $db = $this->db;  // Подключение к бд
         $faker = \Faker\Factory::create();  // Если нужна русская локализация, передать её параметром в метод create 'ru_RU'
@@ -169,7 +169,7 @@ final class Employee
     * @return array
     * @throws CustomException
     */
-    public function getAll()
+    private function getAll()
     {
         $query = $this->getByCondition();
         
@@ -183,7 +183,7 @@ final class Employee
     * @return array
     * @throws CustomException
     */
-    public function getWorkersByFloor($floorNum)
+    private function getWorkersByFloor($floorNum)
     {
         $condition = ['c.floor' => $floorNum];
         $query = $this->getByCondition($condition);
@@ -200,7 +200,7 @@ final class Employee
     * @return array
     * @throws CustomException
     */
-    public function getByBiggestSalary($floorOrCabinet, $num, $limit = 1)
+    private function getByBiggestSalary($floorOrCabinet, $num, $limit = 1)
     {
         $condition = ['c.' . $floorOrCabinet => $num];
         $query = $this->getByCondition($condition, 'w.salary', 'DESC', $limit);
@@ -215,7 +215,7 @@ final class Employee
     * @return array
     * @throws CustomException
     */
-    public function getWorkersFromCabinet($minOrMax)
+    private function getWorkersFromCabinet($minOrMax)
     {
         $query = $this->getByCondition();
         $query = "$query WHERE c.capacity = (SELECT $minOrMax(capacity) FROM cabinet)";
@@ -234,7 +234,7 @@ final class Employee
     * @param null $limit
     * @return string
     */
-    public function getByCondition($condition = null, $orderBy = null, $orderDirection = 'ASC', $limit = null)
+    private function getByCondition($condition = null, $orderBy = null, $orderDirection = 'ASC', $limit = null)
     {
         $query = "SELECT w.id AS id, w.name, w.tel, w.salary, w.address,  c.num, c.floor, c.capacity
         FROM worker AS w 
@@ -268,7 +268,7 @@ final class Employee
     * @return array
     * @throws \Exception
     */
-    public function getFiles($path = "docs/worker.1")
+    private function getFiles($path = "docs/worker.1")
     {
         if (!is_dir($path)) {
             throw new \Exception('Docs folder not found for worker id ' . $worker->id);
@@ -294,7 +294,7 @@ final class Employee
     * @throws CustomException
     * @throws \GuzzleHttp\Exception\GuzzleException
     */
-    public function getVkPhotoPathByAPI($workerId)
+    private function getVkPhotoPathByAPI($workerId)
     {
         $db = $this->db;
         
@@ -331,7 +331,7 @@ final class Employee
     * @return bool|\mysqli_result
     * @throws CustomException
     */
-    public function getVkFotoPath($workerId)
+    private function getVkFotoPath($workerId)
     {
         require_once 'phpQuery/phpQuery/phpQuery.php';
         $db = $this->db;
