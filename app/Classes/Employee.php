@@ -1,11 +1,8 @@
 <?php
-
 namespace App\Classes;
 
 use App\Exception\CustomException;
 use GuzzleHttp\Client;
-
-require_once 'phpQuery/phpQuery/phpQuery.php';
 
 final class Employee
 {  
@@ -19,8 +16,8 @@ final class Employee
     public function __construct()
     {
         $this->db = DataBase::getInstance();
-        $this->create();
-        $this->fill();
+        // $this->create();
+        // $this->fill();
     }
     
     /**
@@ -357,6 +354,7 @@ final class Employee
         $pq = \phpQuery::newDocument($dataCurl);
         $elem = $pq->find('img.page_avatar_img');
         $photoUrl = $elem->attr('src');  
+        \PhpQuery::unloadDocuments();
         
         /**
         * Раскомментируйте код на стр. 333-335, если хотите получить массив ссылок с помощью регулярки.
