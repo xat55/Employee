@@ -353,7 +353,7 @@ final class Employee
         // Get worker VK profile photo with phpQuery
         $pq = \PhpQuery::newDocument($dataCurl);
         $photoUrl = $pq->find('img.page_avatar_img')->attr('src');  
-        \PhpQuery::unloadDocuments();
+        \PhpQuery::unloadDocuments($pq);
         
         /**
         * Раскомментируйте код на стр. 333-335, если хотите получить массив ссылок с помощью регулярки.
