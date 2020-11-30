@@ -5,6 +5,8 @@ namespace App\Classes;
 use App\Exception\CustomException;
 use GuzzleHttp\Client;
 
+require_once 'phpQuery/phpQuery/phpQuery.php';
+
 final class Employee
 {  
     public $param = null;
@@ -333,7 +335,6 @@ final class Employee
     */
     private function getVkFotoPath($workerId)
     {
-        require_once 'phpQuery/phpQuery/phpQuery.php';
         $db = $this->db;
         
         $query = "SELECT vkId FROM worker WHERE id='$workerId'";
