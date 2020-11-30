@@ -351,9 +351,8 @@ final class Employee
         $dataCurl = iconv('windows-1251', 'utf-8', $result);
         
         // Get worker VK profile photo with phpQuery
-        $pq = \phpQuery::newDocument($dataCurl);
-        $elem = $pq->find('img.page_avatar_img');
-        $photoUrl = $elem->attr('src');  
+        $pq = \PhpQuery::newDocument($dataCurl);
+        $photoUrl = $pq->find('img.page_avatar_img')->attr('src');  
         \PhpQuery::unloadDocuments();
         
         /**
