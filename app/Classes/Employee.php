@@ -6,18 +6,14 @@ use GuzzleHttp\Client;
 
 final class Employee
 {  
-    public $param = null;
-    public $param1 = null;
-    private $db;
-    
     /**
     * Employee constructor.
     */
     public function __construct()
     {
         $this->db = DataBase::getInstance();
-        // $this->create();
-        // $this->fill();
+        $this->create();
+        $this->fill();
     }
     
     /**
